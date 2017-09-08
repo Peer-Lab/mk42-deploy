@@ -1,0 +1,15 @@
+# mk42-deploy
+# ansible/init.yml
+
+- hosts: ALL
+  roles:
+    - common
+    - rabbitmq
+    - memcached
+    - redis
+    - postgres
+    - app
+    - web
+    - celery
+    - uwsgi
+  tags: ALL

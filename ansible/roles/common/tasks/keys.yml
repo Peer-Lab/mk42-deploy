@@ -1,0 +1,17 @@
+# mk42-deploy
+# ansible/roles/common/tasks/keys.yml
+
+- name: Authorize ssh keys
+  authorized_key: user="{{ item.user }}" key="{{ item.SSHKeyType }} {{ item.SSHPublicKey }}"
+  with_items:
+    - "{{ Users }}"
+
+- name: Copy ssh private keys
+  copyv: src="keys/{{ item.user }}/{{ item.SSHKey }}" dest="/home/{{ item.user }}/.ssh/{{ item.SSHKey }}" mode="600" owner="{{ item.user }}" group="{{ item.user }}"
+  with_items:
+    - "{{ Users }}"
+
+- name: Copy ssh public keys
+  copy: src="keys/{{ item.user }}/{{ item.SSHKey }}.pub" dest="/home/{{ item.user }}/.ssh/{{ item.SSHKey }}.pub" mode="600" owner="{{ item.user }}" group="{{ item.user }}"
+  with_items:
+    - "{{ Users }}"

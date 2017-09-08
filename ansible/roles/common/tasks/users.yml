@@ -1,0 +1,7 @@
+# mk42-deploy
+# ansible/roles/common/tasks/users.yml
+
+- name: Add users
+  user: name="{{ item.user }}" shell="{{ item.shell }}" groups="{{ item.groups }}" comment="{{ item.comment }}" password="{{ item.password }}"
+  with_items:
+    - "{{ Users }}"

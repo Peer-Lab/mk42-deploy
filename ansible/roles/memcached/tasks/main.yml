@@ -1,0 +1,8 @@
+# mk42-deploy
+# ansible/roles/memcached/tasks/main.yml
+
+- name: Install memcached
+  package: name="memcached" state="installed"
+
+- name: Enable and start memcached
+  service: name="memcached" enabled="yes" state="started"

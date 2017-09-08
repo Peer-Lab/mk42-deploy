@@ -1,0 +1,7 @@
+# mk42-deploy
+# ansible/deploy.yml
+
+- hosts: ALL
+  roles:
+    - deploy
+  tags: deploy

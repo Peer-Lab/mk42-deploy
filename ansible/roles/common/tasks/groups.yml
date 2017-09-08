@@ -1,0 +1,7 @@
+# mk42-deploy
+# ansible/roles/common/tasks/groups.yml
+
+- name: Add users groups
+  group: name="{{ item }}"
+  with_items:
+    - "{{ UsersGroups }}"

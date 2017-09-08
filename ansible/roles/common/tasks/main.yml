@@ -1,0 +1,7 @@
+# mk42-deploy
+# ansible/roles/common/tasks/main.yml
+
+- include: groups.yml
+- include: users.yml
+- include: keys.yml
+- include: pkgs.yml

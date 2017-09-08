@@ -1,0 +1,6 @@
+# mk42-deploy
+# ansible/roles/postgres/vars/main.yml
+
+pkgs:
+  - "postgresql-server"
+  - "python-psycopg2"

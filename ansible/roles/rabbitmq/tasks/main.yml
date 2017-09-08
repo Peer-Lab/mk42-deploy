@@ -1,0 +1,18 @@
+# mk42-deploy
+# ansible/roles/rabbitmq/tasks/main.yml
+
+- name: Install rabbitmq
+  package: name="rabbitmq-server" state="installed"
+
+- name: Enable and start rabbitmq
+  service: name="rabbitmq-server" enabled="yes" state="started"
+
+- name: Create rabbitmq vhosts
+  rabbitmq_vhost: name="{{ item }}"
+  with_items:
+    - "{{ vhosts }}"
+
+- name: Create rabbitmq users
+  rabbitmq_user: user="{{ item.user }}" vhost="{{ item.vhost }}" password="{{ item.password }}" configure_priv="{{ item.configure_priv }}" read_priv="{{ item.read_priv }}" write_priv="{{ item.write_priv }}"
+  with_items:
+    - "{{ users }}"

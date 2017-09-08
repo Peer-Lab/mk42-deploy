@@ -1,0 +1,11 @@
+# mk42-deploy
+# ansible/hosts/deploy
+
+[ALL]
+mk42.localhost8080.pp.ua
+
+[ALL:vars]
+ansible_ssh_user = vint21h
+ansible_ssh_private_key_file = ~/.ssh/id_rsa
+env = production
+domains = mk42.localhost8080.pp.ua,www.mk42.localhost8080.pp.ua

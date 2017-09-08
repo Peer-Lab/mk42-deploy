@@ -1,0 +1,13 @@
+# mk42-deploy
+# ansible/roles/rabbitmq/vars/main.yml
+
+users:
+  - user: "{{ name }}"
+    vhost: "{{ name }}"
+    configure_priv: ".*"
+    read_priv: ".*"
+    write_priv: ".*"
+    password: "{{ pass }}"
+
+vhosts:
+  - "{{ name }}"

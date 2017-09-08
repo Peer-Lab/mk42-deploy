@@ -1,0 +1,31 @@
+# mk42-deploy
+# ansible/roles/common/vars/main.yml
+
+UsersGroups:
+  - "mk42"
+
+Users:
+  - user: "mk42"
+    shell: "/bin/bash"
+    groups: "mk42"
+    comment: "MK42"
+    password: "{{ pass_hash }}"
+    SSHKey: "id_rsa"
+    SSHKeyType: "ssh-rsa"
+    SSHPublicKey: "{{ lookup('file', 'keys/mk42/id_rsa.pub') }}"
+    SSHPrivateKey: "{{ lookup('file', 'keys/mk42/id_rsa') }}"
+
+pkgs:
+  - "mc"
+  - "vim"
+  - "wget"
+  - "mutt"
+  - "virtualenv"
+  - "gcc"
+  - "git"
+  - "mercurial"
+  - "htop"
+  - "mlocate"
+  - "telnet"
+  - "dnsutils"
+  - "screen"

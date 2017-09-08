@@ -1,0 +1,15 @@
+# mk42-deploy
+# ansible/roles/redis/tasks/main.yml
+
+- name: Install redis
+  package: name="redis" state="installed"
+
+- name: Set redis specific sysctl settings
+  sysctl:
+    name: "vm.overcommit_memory"
+    value: 5
+    state: "present"
+    reload: "yes"
+
+- name: Enable and start redis
+  service: name="redis" enabled="yes" state="started"

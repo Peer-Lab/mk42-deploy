@@ -1,0 +1,32 @@
+# mk42-deploy
+# ansible/roles/postgres/tasks/main.yml
+
+- name: Install postgres
+  package: name="{{ item }}" state="installed"
+  with_items:
+  - "{{ pkgs }}"
+
+- name: Init postgres
+  become_user: "root"
+  command: postgresql-setup initdb creates=/var/lib/pgsql/data/
+
+- name: Configure postgres
+  copy: src="postgresql.conf" dest="/var/lib/pgsql/data/postgresql.conf"
+
+- name: Configure postgres security
+  copy: src="pg_hba.conf" dest="/var/lib/pgsql/data/pg_hba.conf"
+
+- name: Enable and start postgres
+  service: name="postgresql" enabled="yes" state="started"
+
+- name: Create postgres user
+  become_user: "postgres"
+  postgresql_user:
+    name: "{{ name }}"
+    password: "{{ pass }}"
+
+- name: Create postgres DB
+  become_user: "postgres"
+  postgresql_db:
+    name: "{{ name }}"
+    owner: "{{ name }}"
